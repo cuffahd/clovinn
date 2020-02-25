@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+ 
+<h:head>
+ 
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"/>
+ 
+</h:head>
+<h:body>
+	<h:form id="homeResolverForm">
+	<div class="container">
+		<span>
+			Bienvenido, elija la accion que desea realizar
+		</span>
+		<DIV>
+			<h:commandButton type="submit" value="Crear Producto" styleClass="btn btn-primary" action="#{homeResolverAction.redirectCrearProducto}" />
+			<h:commandButton type="submit" value="Crear Categoria" styleClass="btn btn-primary" action="#{homeResolverAction.redirectCrearCategoria}" />
+			<h:commandButton type="submit" value="Modificar stock de Producto" styleClass="btn btn-primary" action="#{homeResolverAction.redirectBuscarProducto}" />
+		</DIV>
+	</div>
+	</h:form>
+</h:body>	
+</html>
