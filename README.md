@@ -14,4 +14,7 @@ Posibles mejoras:
 
 La pagina de inicio de la parte web es http://localhost:8080/home.xhtml
 
-En cuanto a los servicios rest los endpoints son:http://localhost:8080/api/productos http://localhost:8080/api/movimientoInventario http://localhost:8080/api/categorias
+En cuanto a los servicios rest los endpoints son:
+http://localhost:8080/api/productos 
+http://localhost:8080/api/movimientoInventario
+http://localhost:8080/api/categorias
