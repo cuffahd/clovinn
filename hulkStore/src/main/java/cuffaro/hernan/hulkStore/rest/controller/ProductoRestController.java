@@ -72,7 +72,7 @@ public class ProductoRestController {
       	  logger.info("Procesando request");
       	  productoService.validarCampos(producto);
       	  productoService.saveOrUpdate(producto);
-      	  logger.info("Procesado de manera correcta");
+      	  logger.info("Producto guardado de manera correcta, ID: " + producto.getId() );
       	  return new ResponseEntity<Object>("Producto guardado de manera correcta, ID: " + producto.getId(), HttpStatus.OK);
         } catch (ServiceException e) {
       	  throw new ResponseStatusException(

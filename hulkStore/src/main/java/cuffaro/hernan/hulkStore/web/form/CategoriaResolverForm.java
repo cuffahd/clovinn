@@ -5,6 +5,11 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+/**
+ * 
+ * @author hernan.d.cuffaro
+ *
+ */
 @Component
 @SessionScope
 public class CategoriaResolverForm implements Serializable{

@@ -69,6 +69,9 @@ public class CategoriaService implements ICategoriaService{
 	        return categorias;
 	}
 
+	/**
+	 * Verifica si la categoria proporcionada existe actualmente en la BD
+	 */
 	@Override
 	public boolean existeCategoria(Categoria categoria) {
 		boolean toReturn = true;

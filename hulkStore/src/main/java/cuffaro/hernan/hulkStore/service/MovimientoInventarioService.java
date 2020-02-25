@@ -43,6 +43,11 @@ public class MovimientoInventarioService implements IMovimientoInventarioService
         return movimientoInventarioLista;
 	}
 
+	/**
+	 * Valida que los datos relacionados al movimiento de inventario sean validos.
+	 * Verifica que el producto asociado exista en la BD.
+	 * Verifica que se disponga de stock suficiente en caso de retirar stock.
+	 */
 	@Override
 	public void validarOperacion(MovimientoInventario movimientoInventario) throws ServiceException {
 		if(!movimientoInventario.validarCamposMinimos()) {
@@ -59,5 +64,6 @@ public class MovimientoInventarioService implements IMovimientoInventarioService
 		if( (bdProducto.getStock() - movimientoInventario.getCantidad() <=-1) && TipoOperacionEnum.RETIRO.equals(movimientoInventario.getOperacion())) {
 			throw new ServiceException("El stock a retirar es mayor del disponible");
 		}
+		
 	}
 }

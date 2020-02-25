@@ -14,6 +14,11 @@ import cuffaro.hernan.hulkStore.model.Categoria;
 import cuffaro.hernan.hulkStore.service.CategoriaService;
 import cuffaro.hernan.hulkStore.web.form.CategoriaResolverForm;
 
+/**
+ * 
+ * @author hernan.d.cuffaro
+ *
+ */
 @Component
 @RequestScope
 public class CategoriaResolverAction implements Serializable{
@@ -34,10 +39,15 @@ public class CategoriaResolverAction implements Serializable{
 		this.categoriaResolverForm = categoriaResolverForm;
 	 }
 	 
+	 /**
+	  * Extrae los valores para crear una categoria desde el Form
+	  * Los evalua para saber si son validos.
+	  * Guarda la nueva categoria en la BD
+	  */
 	 public void saveCategoria() {
 		  Categoria categoria = new Categoria(categoriaResolverForm.getNombre(),categoriaResolverForm.getDescripcion());
 		  if(!categoria.validarNombre()) {
-			  FacesContext.getCurrentInstance().addMessage("categoriaResolverForm:nombre", new FacesMessage("Nombre o Descripcion Invalidos."));
+			  FacesContext.getCurrentInstance().addMessage("categoriaResolverForm:nombre", new FacesMessage("Nombre Invalido."));
 		  }else {
 			  // campos validos
 			  try {

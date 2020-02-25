@@ -75,9 +75,13 @@ public class ProductoService implements IProductoService{
 		}
 	}
 
+	/**
+	 * Valida los campos minimos para que un Producto sea Valido y ademas que la categoria asociada al producto Exista.
+	 */
 	@Override
 	public boolean validarCampos(Producto producto) throws ServiceException {
 		if(!producto.validarCamposMinimos()) {
+			//No se cumple con los campos minimos requeridos.
 			throw new ServiceException("Campos requeridos incompletos");
 		}else if(!categoriaService.existeCategoria(producto.getCategoria()) ) {
 			throw new ServiceException("Categoria inexistente");
@@ -85,6 +89,9 @@ public class ProductoService implements IProductoService{
 		return true;
 	}
 
+	/**
+	 * Valida que el producto exista actualmente en la BD
+	 */
 	@Override
 	public boolean existeProducto(Producto producto) {
 		boolean toReturn = true;
@@ -99,6 +106,9 @@ public class ProductoService implements IProductoService{
 		return toReturn;
 	}
 
+	/**
+	 * Modifica el stock del producto segun la operacion y guarda los cambios en la BD.
+	 */
 	@Override
 	public Producto modificarStock(Integer cantidad, Producto producto, TipoOperacionEnum operacion) throws ServiceException {
 		Producto bdProducto = this.getProductoById(producto.getId());
