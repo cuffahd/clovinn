@@ -2,8 +2,12 @@ package cuffaro.hernan.hulkStore.service;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,9 +21,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import cuffaro.hernan.hulkStore.excepciones.ServiceException;
 import cuffaro.hernan.hulkStore.model.Categoria;
 import cuffaro.hernan.hulkStore.repository.ICategoriaDao;
+import cuffaro.hernan.hulkStore.utils.IteratorUtilsTest;
 
-public class CategoriaServiceTest 
-{
+public class CategoriaServiceTest{
+	
 	@Mock
     ICategoriaDao categoriaDao;
 	    
@@ -66,5 +71,20 @@ public class CategoriaServiceTest
 	    categoriaService.saveOrUpdate(categoria_1);
 	    Assert.fail();
 	}
-
+	
+	@Test
+	public void test_getAll() {
+		List<Categoria> cateList = new ArrayList<Categoria>();
+		cateList.add(categoria_1);
+		Set<Categoria> cateSet = new HashSet<Categoria>();
+		cateSet.add(categoria_1);
+		Iterable<Categoria> cateIterator =   IteratorUtilsTest.iteratorToIterable(cateList.iterator());
+		
+		Mockito.when(categoriaDao.findAll()).thenReturn(cateIterator);
+		
+		Set<Categoria> returnedSet = categoriaService.getAllCategorias();
+		Assert.assertEquals(1, returnedSet.size());
+		Assert.assertEquals(cateSet, returnedSet);
+	}
+	
 }

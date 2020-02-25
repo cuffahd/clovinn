@@ -113,15 +113,15 @@ public class Producto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		if (categoria == null) {
-			if (other.categoria != null)
-				return false;
-		} else if (!categoria.equals(other.categoria))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (categoria == null) {
+			if (other.categoria != null)
+				return false;
+		} else if (!categoria.equals(other.categoria))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)

@@ -55,7 +55,7 @@ public class MovimientoInventarioRestController {
         	  movimientoInventarioService.validarOperacion(movimientoInventario);
         	  movimientoInventarioService.saveOrUpdate(movimientoInventario);
         	  logger.info("Procesado de manera correcta");
-        	  return new ResponseEntity<Object>("Movimiento guardado de manera correcta", HttpStatus.OK);
+        	  return new ResponseEntity<Object>("Movimiento guardado de manera correcta", HttpStatus.CREATED);
           } catch (ServiceException e) {
         	  throw new ResponseStatusException(
         		         HttpStatus.BAD_REQUEST, e.getMessage(), e);

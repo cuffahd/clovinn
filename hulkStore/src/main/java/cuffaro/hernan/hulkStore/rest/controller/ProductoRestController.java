@@ -39,10 +39,10 @@ public class ProductoRestController {
     }
 
     @GetMapping("/productos/{id}")
-    private Producto getProducto(@PathVariable("id") long id) {
+    private ResponseEntity<Object> getProducto(@PathVariable("id") long id) {
         logger.debug("Buscando producto: " + id);
     	try {
-    		return productoService.getProductoById(id);
+    		return new ResponseEntity<Object>(productoService.getProductoById(id), HttpStatus.OK);
 		} catch (ServiceException e) {
 			 throw new ResponseStatusException(
      		         HttpStatus.BAD_REQUEST, e.getMessage());
@@ -55,7 +55,7 @@ public class ProductoRestController {
         	logger.info("Procesando request de DELETE id:" + id);
         	productoService.delete(id);
       	  	logger.info("Borrado correctamente id: " + id);
-      	  	return new ResponseEntity<Object>("Producto borrada correctamente", HttpStatus.OK);
+      	  	return new ResponseEntity<Object>("Producto borrado correctamente", HttpStatus.OK);
         } catch (ServiceException e) {
         	 throw new ResponseStatusException(
           	         HttpStatus.BAD_REQUEST, e.getMessage(),e);
@@ -73,7 +73,7 @@ public class ProductoRestController {
       	  productoService.validarCampos(producto);
       	  productoService.saveOrUpdate(producto);
       	  logger.info("Producto guardado de manera correcta, ID: " + producto.getId() );
-      	  return new ResponseEntity<Object>("Producto guardado de manera correcta, ID: " + producto.getId(), HttpStatus.OK);
+      	  return new ResponseEntity<Object>("Producto guardado de manera correcta, ID: " + producto.getId(), HttpStatus.CREATED);
         } catch (ServiceException e) {
       	  throw new ResponseStatusException(
       		         HttpStatus.BAD_REQUEST, e.getMessage(), e);

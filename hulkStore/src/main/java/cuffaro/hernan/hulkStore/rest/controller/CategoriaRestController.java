@@ -52,10 +52,10 @@ public class CategoriaRestController {
      * @return
      */
     @GetMapping("/categorias/{id}")
-    private Categoria getCategoria(@PathVariable("id") long id) {
+    private ResponseEntity<Object> getCategoria(@PathVariable("id") long id) {
     	logger.debug("Buscando categoria: " + id);
     	try {
-			return categoriaService.getCategoriaById(id);
+			return new ResponseEntity<Object>(categoriaService.getCategoriaById(id), HttpStatus.OK);
 		} catch (ServiceException e) {
 			 throw new ResponseStatusException(
      		         HttpStatus.BAD_REQUEST, e.getMessage());
@@ -90,7 +90,7 @@ public class CategoriaRestController {
      * @return
      */
     @PostMapping("/categorias")
-    private Long saveCategoria(@RequestBody Categoria categoria) {
+    private ResponseEntity<Object> saveCategoria(@RequestBody Categoria categoria) {
       try {
     	  logger.info("Procesando request");
     	  if(!categoria.validarNombre()) {
@@ -99,15 +99,12 @@ public class CategoriaRestController {
     	  }
     	  categoriaService.saveOrUpdate(categoria);
     	  logger.info("Procesado de manera correcta");
-    	  return categoria.getId();
+    	  return new ResponseEntity<Object>("Categoria guardada correctamente, ID: "+ categoria.getId(), HttpStatus.CREATED);
       } catch (ServiceException e) {
     	  throw new ResponseStatusException(
     		         HttpStatus.CONFLICT, e.getMessage(), e);
     	 
-      } catch (Exception exc) {
-	       throw new ResponseStatusException(
-	         HttpStatus.INTERNAL_SERVER_ERROR, "Hubo un error procesando la solicitud.", exc);
-      }
+      } 
     }
 
 }
