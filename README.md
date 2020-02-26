@@ -1,7 +1,5 @@
 Codigo realizado de acuerdo a enunciado provisto por la empresa Clovinn en un tiempo maximo de 3 dias.
 Temas inconclusos debido a tiempo limite de entrega:
-  - Manejo de Excepciones (Crear un handler generico para toda la app)
-  - JUnit, Se realizo una cobertura parcial.
   - Toda la parte web, ya que solo se llego a realizar el Alta de categorias.
 
 
